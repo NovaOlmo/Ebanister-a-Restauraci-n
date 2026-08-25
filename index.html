@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebanistería y Restauración · Arganzuela, Madrid — Muebles a medida y restauración de muebles antiguos</title>
+<meta name="description" content="Taller de ebanistería y restauración en Arganzuela, Madrid. Muebles a medida en maderas nobles y recuperación de muebles antiguos, hechos a mano. Pide presupuesto por WhatsApp.">
+
+<!--
+  ================= PROCEDENCIA DE LOS DATOS (certificado) =================
+  Oficio:      "Ebanistería y Restauración"        — facilitado por el cliente, 2026-08-25
+  Zona:        Madrid, barrio de Arganzuela         — facilitado por el cliente, 2026-08-25
+  Teléfono:    681 37 28 36                          — facilitado por el cliente, 2026-08-25
+               -> WhatsApp: wa.me/34681372836  |  tel:+34681372836
+  Nombre comercial: NO facilitado -> se usa el oficio como logotipo. REEMPLAZAR por el nombre real.
+  Imágenes:    Unsplash (ilustrativas del oficio) con fallback de gradiente. REEMPLAZAR por fotos reales del taller.
+  NO se incluyen: reseñas, testimonios, años de experiencia, nº de proyectos ni horarios
+                  porque no fueron facilitados. Cero datos fabricados.
+  =========================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1E1811;
+    --espresso:#271E16;
+    --paper:#E6DCCB;
+    --sand:#D8CBB4;
+    --walnut:#613C21;
+    --brass:#BE8A3C;
+    --patina:#5B7266;      /* verdigris — pátina de bronce antiguo (guiño a la restauración) */
+    --bone:#F2ECE0;
+    --line:rgba(30,24,17,.16);
+    --line-d:rgba(242,236,224,.16);
+    --maxw:1200px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Archivo",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:clamp(16px,1.05vw,18px);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.02;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ::selection{background:var(--brass);color:var(--ink)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+  .eyebrow{
+    font-family:"Archivo";font-weight:600;font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:.65em;
+    color:var(--walnut);
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--walnut);display:inline-block}
+  .eyebrow.on-dark{color:var(--brass)}
+  .eyebrow.on-dark::before{background:var(--brass)}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:60;
+    transition:background .4s var(--ease),border-color .4s var(--ease),padding .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header .bar{display:flex;align-items:center;justify-content:space-between;height:76px}
+  header.scrolled{background:rgba(30,24,17,.92);backdrop-filter:blur(10px);border-bottom-color:var(--line-d)}
+  .brand{display:flex;flex-direction:column;line-height:1;color:var(--bone)}
+  .brand b{font-family:"Fraunces";font-weight:500;font-size:1.18rem;letter-spacing:-.01em}
+  .brand span{font-family:"Archivo";font-weight:600;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin-top:.35em}
+  header:not(.scrolled) .brand{color:var(--bone)}
+  nav.links{display:flex;gap:2.1rem;align-items:center}
+  nav.links a{color:var(--bone);font-size:.82rem;font-weight:500;letter-spacing:.02em;opacity:.85;transition:opacity .25s}
+  nav.links a:hover{opacity:1}
+  .head-cta{display:flex;align-items:center;gap:1rem}
+  .btn{
+    font-family:"Archivo";font-weight:600;font-size:.83rem;letter-spacing:.01em;
+    padding:.72em 1.25em;border-radius:2px;display:inline-flex;align-items:center;gap:.55em;
+    border:1px solid transparent;cursor:pointer;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-wa{background:var(--brass);color:var(--ink)}
+  .btn-wa:hover{background:#d29b48}
+  .btn-ghost{border-color:var(--line-d);color:var(--bone)}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass)}
+  .btn-ink{background:var(--ink);color:var(--bone)}
+  .btn-ink:hover{background:var(--espresso)}
+  .btn-outline{border-color:var(--line);color:var(--ink)}
+  .btn-outline:hover{border-color:var(--walnut);color:var(--walnut)}
+  .ico{width:1.05em;height:1.05em;flex:none}
+  .menu-toggle{display:none;background:none;border:0;color:var(--bone);cursor:pointer;padding:6px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;background:var(--ink);color:var(--bone);
+    min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+  }
+  .hero-media{position:absolute;inset:0;background:linear-gradient(120deg,#3a2718,#20160e 55%,#120c07)}
+  .hero-media img{width:100%;height:100%;object-fit:cover;opacity:.42;filter:saturate(.9) contrast(1.05)}
+  .hero-media.is-fallback img{display:none}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,9,.95) 0%,rgba(18,14,9,.35) 45%,rgba(18,14,9,.55) 100%)}
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-top:130px;padding-bottom:clamp(48px,7vh,90px)}
+  .hero-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:2.5rem;align-items:end}
+  .hero h1{
+    font-size:clamp(2.7rem,7.2vw,6.1rem);font-weight:400;letter-spacing:-.025em;
+    margin:.7rem 0 0;color:var(--bone);
+  }
+  .hero h1 em{font-style:italic;color:var(--brass)}
+  .hero .lede{max-width:42ch;color:rgba(242,236,224,.82);font-size:1.06rem;margin-top:.4rem}
+  .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+  .hero .place{
+    display:inline-flex;align-items:center;gap:.6em;font-size:.8rem;letter-spacing:.04em;
+    color:rgba(242,236,224,.7);border-top:1px solid var(--line-d);padding-top:1.1rem;margin-bottom:.4rem;
+  }
+  .hero .place b{color:var(--bone);font-family:"Archivo";font-weight:600}
+  .hero-aside{border-left:1px solid var(--line-d);padding-left:1.6rem}
+  .hero-aside p{font-size:.92rem;color:rgba(242,236,224,.78)}
+  .hero-aside .k{font-family:"Fraunces";font-size:1.9rem;color:var(--brass);display:block;line-height:1;margin-bottom:.35rem}
+
+  /* ---------- TICKER ---------- */
+  .ticker{background:var(--walnut);color:var(--bone);overflow:hidden;border-top:1px solid rgba(0,0,0,.2)}
+  .ticker .track{display:flex;gap:3rem;padding:.9rem 0;white-space:nowrap;width:max-content;animation:scroll 34s linear infinite}
+  .ticker span{font-family:"Fraunces";font-style:italic;font-size:1.02rem;opacity:.92;display:inline-flex;gap:3rem;align-items:center}
+  .ticker span::after{content:"◆";font-style:normal;color:var(--brass);font-size:.7rem}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ticker .track{animation:none}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:clamp(72px,10vw,140px) 0}
+  .sec-head{max-width:60ch;margin-bottom:clamp(38px,5vw,66px)}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.5rem);margin-top:1rem;font-weight:400}
+  .sec-head p{margin-top:1.1rem;color:rgba(30,24,17,.72);font-size:1.06rem;max-width:52ch}
+
+  /* ---------- INTRO SPLIT ---------- */
+  .intro{background:var(--paper)}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+  .intro-media{position:relative;aspect-ratio:4/5;background:linear-gradient(135deg,#7a4f2c,#4a2f18);overflow:hidden}
+  .intro-media img{width:100%;height:100%;object-fit:cover}
+  .intro-media.is-fallback img{display:none}
+  .intro-media .tag{
+    position:absolute;left:0;bottom:0;background:var(--ink);color:var(--bone);
+    padding:.9rem 1.3rem;font-family:"Fraunces";font-style:italic;font-size:1.05rem;
+  }
+  .intro-copy h2{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:400;margin-top:.9rem}
+  .intro-copy p{margin-top:1.2rem;color:rgba(30,24,17,.76)}
+  .intro-copy .sig{margin-top:1.8rem;font-family:"Fraunces";font-style:italic;font-size:1.15rem;color:var(--walnut)}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{background:var(--espresso);color:var(--bone)}
+  .pillars .sec-head h2{color:var(--bone)}
+  .pillars .sec-head p{color:rgba(242,236,224,.72)}
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+  .pillar{border:1px solid var(--line-d);padding:clamp(26px,3vw,44px);position:relative;transition:border-color .35s,background .35s}
+  .pillar:hover{border-color:var(--brass);background:rgba(190,138,60,.05)}
+  .pillar .p-media{aspect-ratio:16/10;margin:-1px -1px 1.8rem;background:linear-gradient(135deg,#5a3a20,#2c1c10);overflow:hidden;position:relative}
+  .pillar .p-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .pillar:hover .p-media img{transform:scale(1.05)}
+  .pillar .p-media.is-fallback img{display:none}
+  .pillar h3{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:400}
+  .pillar > p{margin-top:.9rem;color:rgba(242,236,224,.75);font-size:.98rem}
+  .pillar ul{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+  .pillar li{display:flex;gap:.7em;font-size:.9rem;color:rgba(242,236,224,.9);align-items:baseline}
+  .pillar li::before{content:"";width:6px;height:6px;background:var(--brass);flex:none;transform:translateY(.35em);border-radius:1px}
+  .pillar .p-foot{margin-top:1.9rem;padding-top:1.3rem;border-top:1px solid var(--line-d);display:flex;align-items:center;gap:.5em;color:var(--brass);font-weight:600;font-size:.85rem}
+
+  /* ---------- BEFORE / AFTER ---------- */
+  .ba{background:var(--paper)}
+  .ba-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .ba-copy h2{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:400;margin-top:.9rem}
+  .ba-copy p{margin-top:1.1rem;color:rgba(30,24,17,.76)}
+  .ba-note{margin-top:1.5rem;font-size:.8rem;color:rgba(30,24,17,.5);border-left:2px solid var(--patina);padding-left:.9rem}
+  .compare{
+    position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink);
+    user-select:none;touch-action:pan-y;cursor:ew-resize;box-shadow:0 30px 60px -30px rgba(30,24,17,.5);
+  }
+  .compare .layer{position:absolute;inset:0}
+  .compare .layer img{width:100%;height:100%;object-fit:cover}
+  .compare .before{z-index:1;background:linear-gradient(135deg,#54402c,#2b2016)}
+  .compare .after{z-index:2;background:linear-gradient(135deg,#8a5c33,#5a3a20);clip-path:inset(0 0 0 50%)}
+  .compare .is-fallback img{display:none}
+  .compare .lbl{position:absolute;bottom:14px;z-index:4;font-family:"Archivo";font-weight:700;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bone);background:rgba(30,24,17,.75);padding:.4em .8em;backdrop-filter:blur(4px)}
+  .compare .lbl-b{left:14px}
+  .compare .lbl-a{right:14px}
+  .compare .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--brass);z-index:5;transform:translateX(-1px)}
+  .compare .grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--brass);color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(30,24,17,.4)}
+  .compare .grip svg{width:22px;height:22px}
+
+  /* ---------- PROCESS (secuencia real -> numeración justificada) ---------- */
+  .process{background:var(--ink);color:var(--bone)}
+  .process .sec-head h2{color:var(--bone)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-d)}
+  .step{padding:2.2rem 1.6rem 2.4rem;border-right:1px solid var(--line-d);position:relative}
+  .step:last-child{border-right:0}
+  .step .n{font-family:"Fraunces";font-size:2.6rem;color:var(--brass);line-height:1;display:block}
+  .step h4{font-size:1.15rem;font-weight:500;margin:1.1rem 0 .6rem;color:var(--bone)}
+  .step p{font-size:.88rem;color:rgba(242,236,224,.68)}
+
+  /* ---------- MATERIALS / TALLER ---------- */
+  .taller{background:var(--sand)}
+  .taller-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .taller-copy h2{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:400;margin-top:.9rem}
+  .taller-copy p{margin-top:1.1rem;color:rgba(30,24,17,.78)}
+  .mat{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+  .mat span{border:1px solid var(--walnut);color:var(--walnut);padding:.45em 1em;font-size:.8rem;font-weight:500;letter-spacing:.02em;border-radius:2px}
+  .taller-media{position:relative;aspect-ratio:3/4;background:linear-gradient(135deg,#8a5c33,#4a2f18);overflow:hidden}
+  .taller-media img{width:100%;height:100%;object-fit:cover}
+  .taller-media.is-fallback img{display:none}
+
+  /* ---------- CONFIGURATOR (signature interactivo) ---------- */
+  .config{background:var(--espresso);color:var(--bone)}
+  .config-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(34px,5vw,70px);align-items:start}
+  .config-copy h2{font-size:clamp(2rem,4.2vw,3.3rem);font-weight:400;margin-top:.9rem;color:var(--bone)}
+  .config-copy p{margin-top:1.1rem;color:rgba(242,236,224,.75)}
+  .config-copy .assur{margin-top:1.8rem;display:flex;flex-direction:column;gap:.8rem}
+  .config-copy .assur div{display:flex;gap:.7em;font-size:.9rem;color:rgba(242,236,224,.85);align-items:center}
+  .config-copy .assur svg{width:18px;height:18px;color:var(--brass);flex:none}
+  .form{background:var(--paper);color:var(--ink);padding:clamp(24px,3vw,40px);border-radius:2px}
+  .form .fld{margin-bottom:1.5rem}
+  .form label{display:block;font-family:"Archivo";font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--walnut);margin-bottom:.7rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.55rem}
+  .chip{
+    border:1px solid var(--line);background:transparent;color:var(--ink);
+    padding:.6em 1.05em;font-family:"Archivo";font-size:.86rem;font-weight:500;cursor:pointer;border-radius:2px;
+    transition:all .2s var(--ease);
+  }
+  .chip:hover{border-color:var(--walnut)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .form textarea,.form input[type=text]{
+    width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);
+    font-family:"Archivo";font-size:.95rem;padding:.85em 1em;border-radius:2px;resize:vertical;
+  }
+  .form textarea:focus,.form input:focus,.chip:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+  .form textarea{min-height:92px}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form .send{width:100%;justify-content:center;margin-top:.4rem;font-size:.95rem;padding:1em}
+  .form .preview{margin-top:1rem;font-size:.78rem;color:rgba(30,24,17,.55);line-height:1.5;min-height:1.2em}
+  .form .preview b{color:var(--walnut)}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--paper)}
+  .g-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;grid-auto-rows:150px}
+  .g-item{overflow:hidden;position:relative;background:linear-gradient(135deg,#6a4529,#33210f)}
+  .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .g-item:hover img{transform:scale(1.06)}
+  .g-item.is-fallback img{display:none}
+  .g-item.a{grid-column:span 3;grid-row:span 2}
+  .g-item.b{grid-column:span 3}
+  .g-item.c{grid-column:span 2}
+  .g-item.d{grid-column:span 2}
+  .g-item.e{grid-column:span 2}
+  .g-cap{margin-top:1.6rem;font-size:.8rem;color:rgba(30,24,17,.5)}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{background:var(--ink);color:var(--bone);text-align:center}
+  .final h2{font-size:clamp(2.3rem,6vw,4.6rem);font-weight:400;color:var(--bone);max-width:16ch;margin:1.2rem auto 0;letter-spacing:-.02em}
+  .final h2 em{font-style:italic;color:var(--brass)}
+  .final .phone{font-family:"Fraunces";font-size:clamp(1.8rem,4.5vw,2.9rem);color:var(--brass);display:inline-block;margin:2rem 0 .3rem;letter-spacing:.01em}
+  .final .sub{color:rgba(242,236,224,.7);font-size:.95rem}
+  .final-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.3rem}
+  .final .place2{margin-top:2.8rem;font-size:.82rem;letter-spacing:.08em;color:rgba(242,236,224,.55);text-transform:uppercase}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--espresso);color:var(--bone);padding:clamp(46px,6vw,72px) 0 2.2rem;border-top:1px solid var(--line-d)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;align-items:start}
+  .foot-brand b{font-family:"Fraunces";font-size:1.5rem;font-weight:500;display:block}
+  .foot-brand span{font-family:"Archivo";font-weight:600;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass)}
+  .foot-brand p{margin-top:1.1rem;color:rgba(242,236,224,.6);font-size:.9rem;max-width:34ch}
+  .foot-col h5{font-family:"Archivo";font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+  .foot-col a,.foot-col p{display:block;color:rgba(242,236,224,.78);font-size:.92rem;margin-bottom:.6rem}
+  .foot-col a:hover{color:var(--brass)}
+  .foot-bot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line-d);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.76rem;color:rgba(242,236,224,.45)}
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .wa-float{
+    position:fixed;right:20px;bottom:20px;z-index:70;background:#25D366;color:#fff;
+    width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,.5);transition:transform .3s var(--ease);
+  }
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:32px;height:32px}
+  .wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.wa-float::after{animation:none}}
+
+  /* ---------- REVEAL (solo si JS/GSAP activo) ---------- */
+  .js .reveal{opacity:0;transform:translateY(26px)}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:920px){
+    nav.links{display:none}
+    .menu-toggle{display:block}
+    .head-cta .btn-ghost{display:none}
+    .hero-grid,.intro-grid,.pillar-grid,.ba-grid,.taller-grid,.config-grid,.foot-grid{grid-template-columns:1fr}
+    .hero-aside{border-left:0;border-top:1px solid var(--line-d);padding-left:0;padding-top:1.4rem}
+    .steps{grid-template-columns:1fr 1fr}
+    .step:nth-child(2){border-right:0}
+    .step{border-bottom:1px solid var(--line-d)}
+    .g-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}
+    .g-item.a{grid-column:span 2;grid-row:span 2}
+    .g-item.b,.g-item.c,.g-item.d,.g-item.e{grid-column:span 1}
+    .ba-grid{gap:2rem}
+  }
+  @media(max-width:560px){
+    header .bar{height:66px}
+    .steps{grid-template-columns:1fr}
+    .step{border-right:0}
+    .form .row{grid-template-columns:1fr}
+    .g-grid{grid-template-columns:1fr}
+    .g-item.a,.g-item.b,.g-item.c,.g-item.d,.g-item.e{grid-column:span 1;grid-row:span 1}
+  }
+
+  /* mobile menu panel */
+  .mobile-menu{position:fixed;inset:0;z-index:65;background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;padding:0 8vw;transform:translateY(-100%);transition:transform .5s var(--ease)}
+  .mobile-menu.open{transform:translateY(0)}
+  .mobile-menu a{font-family:"Fraunces";font-size:2rem;padding:.5rem 0;border-bottom:1px solid var(--line-d)}
+  .mobile-menu .close{position:absolute;top:22px;right:8vw;background:none;border:0;color:var(--bone);font-size:2rem;cursor:pointer}
+  .mobile-menu .mm-cta{margin-top:2rem}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="site-head">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Inicio">
+      <!-- REEMPLAZAR por el nombre comercial real del taller -->
+      <b>Ebanistería &amp; Restauración</b>
+      <span>Arganzuela · Madrid</span>
+    </a>
+    <nav class="links" aria-label="Principal">
+      <a href="#oficio">El oficio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#taller">El taller</a>
+      <a href="#presupuesto">Presupuesto</a>
+    </nav>
+    <div class="head-cta">
+      <a class="btn btn-ghost" href="tel:+34681372836">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+        681 37 28 36
+      </a>
+      <a class="btn btn-wa" href="https://wa.me/34681372836?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto." target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9 9 0 0 1-3.9-3.5c-.3-.4-.7-1.1-.7-2s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3-.1.5.4l.7 1.6c0 .2.1.3 0 .4l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 1.3 1.6 6 6 0 0 0 1.8 1.2c.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <button class="menu-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Cerrar menú">&times;</button>
+  <a href="#oficio">El oficio</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#taller">El taller</a>
+  <a href="#presupuesto">Presupuesto</a>
+  <a class="btn btn-wa mm-cta" href="https://wa.me/34681372836" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <figure class="hero-media">
+    <img src="https://images.unsplash.com/photo-1601058268499-e52e0a3a0c5b?auto=format&fit=crop&w=1900&q=80" alt="Taller de ebanistería con herramientas de mano sobre banco de madera" onerror="this.parentElement.classList.add('is-fallback')">
+  </figure>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow on-dark reveal">Taller artesano en Arganzuela</span>
+        <h1 class="reveal">Muebles a medida y <em>restauración</em> hechos a mano.</h1>
+        <p class="lede reveal">Ebanistería fina en maderas nobles y recuperación de muebles antiguos, pieza a pieza, en pleno corazón de Madrid.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-wa" href="#presupuesto">
+            <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9 9 0 0 1-3.9-3.5c-.3-.4-.7-1.1-.7-2s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3-.1.5.4l.7 1.6c0 .2.1.3 0 .4l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 1.3 1.6 6 6 0 0 0 1.8 1.2c.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
+            Pedir presupuesto
+          </a>
+          <a class="btn btn-ghost" href="#servicios">Ver lo que hacemos</a>
+        </div>
+      </div>
+      <aside class="hero-aside reveal">
+        <span class="k">Hecho a mano</span>
+        <p>Cada encargo se piensa, se mide y se trabaja en el taller. Sin catálogos en serie: madera de verdad, ensamblada como se hacía siempre.</p>
+      </aside>
+    </div>
+    <div class="hero-grid" style="margin-top:2.4rem">
+      <p class="place reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--brass)"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Taller en <b>Arganzuela, Madrid</b> · atendemos toda la ciudad
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TICKER ===================== -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Muebles a medida</span><span>Restauración de antigüedades</span><span>Maderas nobles</span><span>Barnizado y acabados</span><span>Marquetería y chapado</span><span>Reparación de muebles</span>
+    <span>Muebles a medida</span><span>Restauración de antigüedades</span><span>Maderas nobles</span><span>Barnizado y acabados</span><span>Marquetería y chapado</span><span>Reparación de muebles</span>
+  </div>
+</div>
+
+<!-- ===================== INTRO / OFICIO ===================== -->
+<section class="intro" id="oficio">
+  <div class="wrap intro-grid">
+    <figure class="intro-media reveal">
+      <img src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80" alt="Ebanista trabajando una pieza de madera a mano" onerror="this.parentElement.classList.add('is-fallback')">
+      <figcaption class="tag">Del boceto a la pieza terminada</figcaption>
+    </figure>
+    <div class="intro-copy">
+      <span class="eyebrow reveal">El oficio</span>
+      <h2 class="reveal">La madera bien trabajada dura toda una vida.</h2>
+      <p class="reveal">Trabajamos la madera como material vivo: elegimos la veta, cuidamos los ensamblajes y damos el acabado a mano. Ya sea un mueble nuevo pensado para tu espacio o una pieza heredada que merece volver a su mejor momento, el criterio es el mismo: respeto por el material y trabajo hecho para durar.</p>
+      <p class="reveal">Nada de producción en serie. Cada encargo empieza con una conversación y termina con una pieza única.</p>
+      <p class="sig reveal">Ebanistería fina y restauración, en Arganzuela.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PILARES / SERVICIOS ===================== -->
+<section class="pillars" id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Dos oficios, un mismo taller</span>
+      <h2>Lo que hacemos</h2>
+      <p>Fabricamos muebles a medida y devolvemos la vida a los que ya tienen historia. Todo pasa por las mismas manos y el mismo banco de trabajo.</p>
+    </div>
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <figure class="p-media">
+          <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1100&q=80" alt="Mueble de madera maciza a medida" onerror="this.parentElement.classList.add('is-fallback')">
+        </figure>
+        <h3>Ebanistería a medida</h3>
+        <p>Muebles pensados para tu espacio y tus medidas, en maderas nobles y con ensamblajes de verdad. Piezas que encajan donde nada del catálogo encaja.</p>
+        <ul>
+          <li>Librerías, aparadores, mesas y armarios a medida</li>
+          <li>Carpintería fina para cocina, salón y dormitorio</li>
+          <li>Encargos especiales y piezas únicas</li>
+          <li>Maderas macizas y chapados de calidad</li>
+        </ul>
+        <div class="p-foot">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Cuéntanos tu idea
+        </div>
+      </article>
+      <article class="pillar reveal">
+        <figure class="p-media">
+          <img src="https://images.unsplash.com/photo-1594940904129-3f1b0a0c6f8f?auto=format&fit=crop&w=1100&q=80" alt="Restauración de mueble antiguo de madera" onerror="this.parentElement.classList.add('is-fallback')">
+        </figure>
+        <h3>Restauración de muebles</h3>
+        <p>Recuperamos muebles antiguos y piezas heredadas: estructura, madera y acabado. Devolvemos el mueble a su mejor estado sin borrar lo que lo hace especial.</p>
+        <ul>
+          <li>Restauración de muebles antiguos y de época</li>
+          <li>Reparación de estructuras, patas y ensamblajes</li>
+          <li>Decapado, barnizado y acabados tradicionales</li>
+          <li>Recuperación de chapa, marquetería y molduras</li>
+        </ul>
+        <div class="p-foot">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Enséñanos tu pieza
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ANTES / DESPUÉS (signature 1) ===================== -->
+<section class="ba">
+  <div class="wrap ba-grid">
+    <div class="ba-copy">
+      <span class="eyebrow reveal">Antes · Después</span>
+      <h2 class="reveal">Una segunda vida para lo que creías perdido.</h2>
+      <p class="reveal">Un mueble desgastado no es un mueble para tirar. Arrastra el control y verás la diferencia entre una pieza deteriorada y esa misma pieza recuperada en el taller.</p>
+      <p class="ba-note reveal">Imágenes ilustrativas del tipo de trabajo. En la web final se sustituyen por fotos reales de tus propios proyectos.</p>
+    </div>
+    <div class="compare reveal" id="compare">
+      <div class="layer before">
+        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=70" alt="Mueble antiguo antes de restaurar" onerror="this.parentElement.classList.add('is-fallback')">
+      </div>
+      <div class="layer after" id="afterLayer">
+        <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=85" alt="El mismo mueble restaurado" onerror="this.parentElement.classList.add('is-fallback')">
+      </div>
+      <span class="lbl lbl-b">Antes</span>
+      <span class="lbl lbl-a">Después</span>
+      <div class="handle" id="handle">
+        <div class="grip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESO (secuencia real) ===================== -->
+<section class="process" id="proceso">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Cómo trabajamos</span>
+      <h2>De la primera llamada a la entrega</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="n">1</span>
+        <h4>Hablamos</h4>
+        <p>Nos cuentas qué necesitas por WhatsApp o teléfono. Si hace falta, vemos la pieza o el espacio.</p>
+      </div>
+      <div class="step reveal">
+        <span class="n">2</span>
+        <h4>Presupuesto</h4>
+        <p>Te damos un presupuesto claro y sin compromiso, con materiales, plazos y acabado.</p>
+      </div>
+      <div class="step reveal">
+        <span class="n">3</span>
+        <h4>Taller</h4>
+        <p>Fabricamos o restauramos a mano, cuidando cada detalle del ensamblaje al acabado final.</p>
+      </div>
+      <div class="step reveal">
+        <span class="n">4</span>
+        <h4>Entrega</h4>
+        <p>Te devolvemos la pieza lista para durar, con el trabajo bien terminado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TALLER / MATERIALES ===================== -->
+<section class="taller" id="taller">
+  <div class="wrap taller-grid">
+    <div class="taller-copy">
+      <span class="eyebrow reveal">El taller</span>
+      <h2 class="reveal">Herramienta de mano, materiales de verdad.</h2>
+      <p class="reveal">En el banco se decide todo. Trabajamos maderas nobles, chapados y molduras con técnicas de ebanistería tradicional y acabados que resaltan la veta en lugar de taparla. Lo que sale del taller está pensado para el uso diario y para envejecer bien.</p>
+      <div class="mat reveal">
+        <span>Roble</span><span>Nogal</span><span>Haya</span><span>Pino</span><span>Cerezo</span><span>Chapa natural</span><span>Marquetería</span><span>Barnices al agua</span>
+      </div>
+    </div>
+    <figure class="taller-media reveal">
+      <img src="https://images.unsplash.com/photo-1622045808051-6bd8f57e2b1c?auto=format&fit=crop&w=1000&q=80" alt="Herramientas de ebanistería sobre banco de trabajo" onerror="this.parentElement.classList.add('is-fallback')">
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== CONFIGURADOR (signature 2) ===================== -->
+<section class="config" id="presupuesto">
+  <div class="wrap config-grid">
+    <div class="config-copy">
+      <span class="eyebrow on-dark reveal">Presupuesto sin compromiso</span>
+      <h2 class="reveal">Cuéntanos tu proyecto</h2>
+      <p class="reveal">Rellena estos pasos y preparamos tu mensaje de WhatsApp con todo lo necesario. Te respondemos con una orientación y, si quieres, concertamos una visita.</p>
+      <div class="assur reveal">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Respuesta por WhatsApp, sin formularios eternos</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Presupuesto claro y sin compromiso</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Atención directa con el ebanista</div>
+      </div>
+    </div>
+
+    <div class="form reveal" role="group" aria-label="Configurador de presupuesto">
+      <div class="fld">
+        <label>1 · ¿Qué necesitas?</label>
+        <div class="chips" data-group="tipo">
+          <button type="button" class="chip" aria-pressed="false">Mueble a medida</button>
+          <button type="button" class="chip" aria-pressed="false">Restaurar un mueble</button>
+          <button type="button" class="chip" aria-pressed="false">Reparación</button>
+          <button type="button" class="chip" aria-pressed="false">Otro</button>
+        </div>
+      </div>
+      <div class="fld">
+        <label>2 · Tipo de madera (si lo sabes)</label>
+        <div class="chips" data-group="madera">
+          <button type="button" class="chip" aria-pressed="false">Roble</button>
+          <button type="button" class="chip" aria-pressed="false">Nogal</button>
+          <button type="button" class="chip" aria-pressed="false">Pino</button>
+          <button type="button" class="chip" aria-pressed="false">No lo sé</button>
+        </div>
+      </div>
+      <div class="fld">
+        <label>3 · Cuéntanoslo con tus palabras</label>
+        <textarea id="detalle" placeholder="Ej.: Tengo una cómoda antigua de mi abuela con una pata rota y el barniz saltado. Me gustaría recuperarla."></textarea>
+      </div>
+      <div class="fld row">
+        <div>
+          <label>Tu nombre</label>
+          <input type="text" id="nombre" placeholder="Nombre">
+        </div>
+        <div>
+          <label>Zona de Madrid</label>
+          <input type="text" id="zona" placeholder="Ej.: Arganzuela">
+        </div>
+      </div>
+      <a class="btn btn-wa send" id="sendWa" href="https://wa.me/34681372836" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9 9 0 0 1-3.9-3.5c-.3-.4-.7-1.1-.7-2s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3-.1.5.4l.7 1.6c0 .2.1.3 0 .4l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 1.3 1.6 6 6 0 0 0 1.8 1.2c.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
+        Enviar por WhatsApp
+      </a>
+      <p class="preview" id="preview"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALERÍA ===================== -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">El oficio, de cerca</span>
+      <h2>Madera, manos y detalle</h2>
+    </div>
+    <div class="g-grid">
+      <figure class="g-item a"><img src="https://images.unsplash.com/photo-1611021061285-2c1f0f4a4d1a?auto=format&fit=crop&w=1200&q=80" alt="Detalle de ensamblaje de madera" onerror="this.parentElement.classList.add('is-fallback')"></figure>
+      <figure class="g-item b"><img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80" alt="Virutas de madera en el taller" onerror="this.parentElement.classList.add('is-fallback')"></figure>
+      <figure class="g-item c"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80" alt="Acabado de un mueble de madera" onerror="this.parentElement.classList.add('is-fallback')"></figure>
+      <figure class="g-item d"><img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?auto=format&fit=crop&w=800&q=80" alt="Herramientas de ebanistería" onerror="this.parentElement.classList.add('is-fallback')"></figure>
+      <figure class="g-item e"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80" alt="Veta de la madera trabajada" onerror="this.parentElement.classList.add('is-fallback')"></figure>
+    </div>
+    <p class="g-cap reveal">Imágenes ilustrativas del oficio. En tu web irían aquí las fotos de tus propios trabajos.</p>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow on-dark reveal" style="justify-content:center">Hablemos de tu mueble</span>
+    <h2 class="reveal">¿Tienes una idea o una pieza que <em>recuperar?</em></h2>
+    <a class="phone reveal" href="tel:+34681372836">681 37 28 36</a>
+    <p class="sub reveal">Llámanos o escríbenos por WhatsApp. Sin compromiso.</p>
+    <div class="final-cta reveal">
+      <a class="btn btn-wa" href="https://wa.me/34681372836?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para%20un%20mueble." target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9 9 0 0 1-3.9-3.5c-.3-.4-.7-1.1-.7-2s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3-.1.5.4l.7 1.6c0 .2.1.3 0 .4l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 1.3 1.6 6 6 0 0 0 1.8 1.2c.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#presupuesto">Pedir presupuesto</a>
+    </div>
+    <p class="place2 reveal">Taller en Arganzuela · Madrid</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <!-- REEMPLAZAR por el nombre comercial real -->
+        <b>Ebanistería &amp; Restauración</b>
+        <span>Arganzuela · Madrid</span>
+        <p>Muebles a medida y restauración de muebles antiguos, hechos a mano en el corazón de Madrid.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Servicios</h5>
+        <a href="#servicios">Muebles a medida</a>
+        <a href="#servicios">Restauración de antigüedades</a>
+        <a href="#servicios">Reparación de muebles</a>
+        <a href="#taller">Barnizado y acabados</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="tel:+34681372836">681 37 28 36</a>
+        <a href="https://wa.me/34681372836" target="_blank" rel="noopener">WhatsApp directo</a>
+        <p>Arganzuela, Madrid</p>
+        <a href="#presupuesto">Pedir presupuesto</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr"></span> · Ebanistería y Restauración · Arganzuela, Madrid</span>
+      <span>Taller artesano · Atención directa</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34681372836?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9 9 0 0 1-3.9-3.5c-.3-.4-.7-1.1-.7-2s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3-.1.5.4l.7 1.6c0 .2.1.3 0 .4l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 1.3 1.6 6 6 0 0 0 1.8 1.2c.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
+</a>
+
+<!-- ===================== LIBRERÍAS ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGSAP = typeof window.gsap !== 'undefined';
+
+  // year
+  var yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
+
+  // header scrolled state
+  var head = document.getElementById('site-head');
+  function onScroll(){ if(window.scrollY > 40) head.classList.add('scrolled'); else head.classList.remove('scrolled'); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // mobile menu
+  var mm = document.getElementById('mobileMenu');
+  var mo = document.getElementById('menuOpen');
+  var mc = document.getElementById('menuClose');
+  if(mo&&mm){ mo.addEventListener('click', function(){ mm.classList.add('open'); }); }
+  if(mc&&mm){ mc.addEventListener('click', function(){ mm.classList.remove('open'); }); }
+  if(mm){ mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); }); }); }
+
+  // smooth scroll (Lenis) + anchors
+  var lenis = null;
+  if(typeof window.Lenis !== 'undefined' && !reduce){
+    lenis = new Lenis({ duration:1.1, smoothWheel:true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    if(hasGSAP && window.ScrollTrigger){ lenis.on('scroll', ScrollTrigger.update); }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href'); if(id.length<2) return;
+      var el = document.querySelector(id); if(!el) return;
+      e.preventDefault();
+      if(lenis){ lenis.scrollTo(el, {offset:-70}); }
+      else { el.scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'}); }
+    });
+  });
+
+  // reveal animations
+  if(hasGSAP && window.ScrollTrigger && !reduce){
+    gsap.registerPlugin(ScrollTrigger);
+
+    // hero headline split
+    var h1 = document.querySelector('.hero h1');
+    if(h1 && typeof window.SplitType !== 'undefined'){
+      try{
+        var st = new SplitType(h1, {types:'lines'});
+        gsap.set(h1, {opacity:1});
+        gsap.from(st.lines, {yPercent:110, opacity:0, duration:1, ease:'power4.out', stagger:.12, delay:.15});
+      }catch(err){ gsap.to(h1, {opacity:1, duration:.6}); }
+    }
+
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      if(el.matches('.hero h1')) return;
+      gsap.to(el, {
+        opacity:1, y:0, duration:.9, ease:'power3.out',
+        scrollTrigger:{ trigger:el, start:'top 88%', once:true }
+      });
+    });
+  } else {
+    // no libs / reduced motion -> show everything
+    document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity=1; el.style.transform='none'; });
+  }
+
+  // ---------- BEFORE / AFTER compare ----------
+  var cmp = document.getElementById('compare');
+  var after = document.getElementById('afterLayer');
+  var handle = document.getElementById('handle');
+  if(cmp && after && handle){
+    var dragging = false;
+    function setPos(clientX){
+      var r = cmp.getBoundingClientRect();
+      var x = (clientX - r.left) / r.width;
+      x = Math.max(0, Math.min(1, x));
+      var pct = (x*100).toFixed(1);
+      after.style.clipPath = 'inset(0 0 0 '+pct+'%)';
+      handle.style.left = pct+'%';
+    }
+    cmp.addEventListener('pointerdown', function(e){ dragging=true; cmp.setPointerCapture(e.pointerId); setPos(e.clientX); });
+    cmp.addEventListener('pointermove', function(e){ if(dragging) setPos(e.clientX); });
+    window.addEventListener('pointerup', function(){ dragging=false; });
+    // hover follow on desktop
+    cmp.addEventListener('mousemove', function(e){ if(!('ontouchstart' in window)) setPos(e.clientX); });
+  }
+
+  // ---------- WhatsApp configurator ----------
+  var state = { tipo:'', madera:'', detalle:'', nombre:'', zona:'' };
+  document.querySelectorAll('.chips').forEach(function(group){
+    var key = group.getAttribute('data-group');
+    group.querySelectorAll('.chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        group.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed','false'); });
+        chip.setAttribute('aria-pressed','true');
+        state[key] = chip.textContent.trim();
+        buildMsg();
+      });
+    });
+  });
+  ['detalle','nombre','zona'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', function(){ state[id]=el.value.trim(); buildMsg(); });
+  });
+
+  var sendBtn = document.getElementById('sendWa');
+  var preview = document.getElementById('preview');
+  function buildMsg(){
+    var lines = ['Hola, me gustaría pedir presupuesto.'];
+    if(state.tipo)   lines.push('• Necesito: ' + state.tipo);
+    if(state.madera && state.madera !== 'No lo sé') lines.push('• Madera: ' + state.madera);
+    if(state.detalle) lines.push('• Detalle: ' + state.detalle);
+    if(state.nombre) lines.push('• Soy: ' + state.nombre);
+    if(state.zona)   lines.push('• Zona: ' + state.zona);
+    var txt = lines.join('\n');
+    if(sendBtn) sendBtn.href = 'https://wa.me/34681372836?text=' + encodeURIComponent(txt);
+    if(preview){
+      var done = state.tipo ? 'Listo para enviar' : 'Elige una opción para empezar';
+      preview.innerHTML = '<b>'+done+'.</b> Se abrirá WhatsApp con tu mensaje ya escrito.';
+    }
+  }
+  buildMsg();
+})();
+</script>
+</body>
+</html>
